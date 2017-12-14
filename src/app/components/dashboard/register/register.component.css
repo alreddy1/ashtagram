@@ -1,0 +1,10 @@
+#home-section{
+    color: rgb(19, 18, 18); 
+}
+
+#home-section{
+    background:url('../../../../assets/img/scene-8.jpg') no-repeat;
+    background-size:cover;
+    background-attachment:fixed;
+    min-height:700px;
+}

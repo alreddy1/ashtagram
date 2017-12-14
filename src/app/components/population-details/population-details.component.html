@@ -1,0 +1,344 @@
+<head>
+
+</head>
+<body>
+  <div class="container">
+    <header id="main-header">
+      <div class="row no-gutters pt-1">
+        <div class="col-lg-4 col-md-5 ">
+          <img src="../../../assets/img/logo/ashta_logo_red.jpg" alt="" class="img-fluid rounded-circle">
+        </div>
+
+      <div class="col-lg-8 col-md-7">
+        <div class="d-flex flex-column">
+          <div class="p-5 bg-dark text-white">
+            <div class="name d-flex flex-row justify-content-between align-items-center">
+              <h1 class="display-4 ">Ashta</h1>
+              <div><i class="fa fa-twitter text-primary"></i></div>
+              <div><i class="fa fa-facebook text-info"></i></div>
+              <div><i class="fa fa-instagram text-warning"></i></div>
+            </div>
+          </div>
+         
+          <div class="p-4 bg-info">
+            <h4 class="oblique">Population Details</h4>
+          </div>
+
+          <div class="d-flex flex-row text-white align-items-stretch text-center">
+            <div class="port-item p-4 bg-primary" data-toggle="collapse" data-target="#all">
+                <i class="fa fa-users d-block"></i>
+              <h5 class="text-justify">Total</h5>
+              <h3 class="text-justify text-center">{{ total }}</h3>
+            </div>
+            <div class="port-item p-4 bg-success" data-toggle="collapse" data-target="#male">
+              <i class="fa fa-male d-block"></i>
+              <h5>Male</h5>
+            </div>
+            <div class="port-item p-4 bg-warning" data-toggle="collapse" data-target="#female">
+              <i class="fa fa-female d-block"></i>
+              <h5 class="float-sm-left">Female</h5>
+            </div>
+            <div class="port-item p-4 bg-danger" data-toggle="collapse" data-target="#adult">
+              <i class="fa fa-user-plus d-block"></i>
+              <h5>Adult</h5>
+            </div>              
+            <div class="port-item p-4 bg-dark" data-toggle="collapse" data-target="#dashboard">
+              <i class="fa fa-th d-block"></i>
+              <h5>Dash Board</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+    
+  <!-- HOME -->
+  <div id="all" class="collapse show">
+    <div class="card card-body bg-primary text-white py-2">
+      <h2>Total </h2>
+      <p class="lead">Total Population will be shown here..!</p>
+      <div class="card card-body p-2">
+        <table *ngIf="clients?.length > 0;else noClients" 
+            class="table table-bordered table-dark table-sm table-hover table-striped" id="myData">
+          <thead class="thead-inverse">
+            <tr>
+              <th>#</th>
+              <th (click)="sort('firstName')" class="text-center oblique" >Full Name
+                  <span class="glyphicon sort-icon" *ngIf="key =='firstName'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('aka')" class="hide d-none d-sm-block oblique">Also Called As
+                  <span class="glyphicon sort-icon bg-light" *ngIf="key =='aka'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('gender')" class="oblique">Gender
+                  <span class="glyphicon sort-icon" *ngIf="key =='gender'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('age')" class="oblique">Age
+                  <span class="glyphicon sort-icon" *ngIf="key =='age'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <!-- <th></th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let client of clients | orderBy: key : reverse | paginate: { 
+            itemsPerPage: 10,
+            currentPage: p } ; let i = index" class="text-dark" >
+              <!-- <ng-template [ngIf]="client.gender == 'Male'"> -->
+                <td class="oblique">{{ (p-1)*10+i+1 }} </td>
+                <td class="oblique">{{client.firstName}} {{client.lastName}} </td>
+                <td class="hide d-none d-sm-block oblique" >{{client.aka}}</td>
+                <td class="oblique"> {{client.gender}}</td>
+                <td class="oblique"> {{client.age}} </td>
+                <!-- <td><a [routerLink]="['/client/'+client.key]" href="" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-circle-o-right"></i> Details</a></td> -->
+              <!-- </ng-template> -->
+            </tr>
+          </tbody>
+        </table>
+            
+        <ng-template #noClients>
+          <hr>
+          <h5>There are no clients in the system</h5>
+        </ng-template>
+      </div>
+      <pagination-controls (pageChange) = "p = $event"> </pagination-controls>
+    </div>
+  </div>
+
+  <!-- Male -->
+  <div id="male" class="collapse">
+    <div class="card card-body bg-success text-white py-2">
+      <h2>Male </h2>
+      <p class="lead">Male Population will be shown here..!</p>
+      <div class="card card-body p-2">
+        <table *ngIf="clients?.length > 0;else noClients" 
+            class="table table-bordered table-dark table-sm table-hover table-striped">
+          <thead class="thead-inverse">
+            <tr>
+              <th>#</th>
+              <th (click)="sort('firstName')"  class="text-center oblique">Full Name
+                  <span class="glyphicon sort-icon" *ngIf="key =='firstName'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('aka')" class="hide d-none d-sm-block oblique">Also Called As
+                  <span class="glyphicon sort-icon bg-light" *ngIf="key =='aka'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('gender')" class="oblique">Gender
+                  <span class="glyphicon sort-icon" *ngIf="key =='gender'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('age')" class="oblique">Age
+                  <span class="glyphicon sort-icon" *ngIf="key =='age'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <!-- <th></th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let client of clients | orderBy: key : reverse | paginate: { 
+              itemsPerPage: 10,
+              currentPage: p } ; let i = index" class="text-dark" >
+              <ng-template [ngIf]="client.gender == 'Male'">
+                <td class="oblique">{{ (p-1)*10+i+1 }} </td>
+                <td class="oblique">{{client.firstName}} {{client.lastName}} </td>
+                <td class="hide d-none d-sm-block  oblique">{{client.aka}}</td>
+                <td class="oblique"> {{client.gender}}</td>
+                <td class="oblique"> {{client.age}} </td>
+                <!-- <td><a [routerLink]="['/client/'+client.key]" href="" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-circle-o-right"></i> Details</a></td> -->
+              </ng-template>
+            </tr>
+          </tbody>
+        </table>
+            
+        <ng-template #noClients>
+          <hr>
+          <h5>There are no clients in the system</h5>
+        </ng-template>
+      </div>
+      <pagination-controls (pageChange) = "p = $event"> </pagination-controls>
+    </div>
+  </div>
+
+  <!-- Female -->
+  <div id="female" class="collapse">
+    <div class="card card-body bg-warning text-white py-2">
+      <h2>Female </h2>
+      <p class="lead">Female Population will be shown here..!</p>
+      <div class="card card-body p-2">
+        <table *ngIf="clients?.length > 0;else noClients" 
+            class="table table-bordered table-dark table-sm table-hover table-striped">
+          <thead class="thead-inverse">
+            <tr>
+              <th>#</th>
+              <th (click)="sort('firstName')"  class="text-center oblique">Full Name
+                <span class="glyphicon sort-icon" *ngIf="key =='firstName'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('aka')" class="hide d-none d-sm-block oblique">A.K.A
+                <span class="glyphicon sort-icon bg-light" *ngIf="key =='aka'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('gender')" class="oblique">Gender
+                <span class="glyphicon sort-icon" *ngIf="key =='gender'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('age')" class="oblique">Age
+                <span class="glyphicon sort-icon" *ngIf="key =='age'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <!-- <th></th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let client of clients | orderBy: key : reverse | paginate: { 
+              itemsPerPage: 10,
+              currentPage: p } ; let i = index" class="text-dark">
+              <ng-template [ngIf]="client.gender == 'Female'">
+                <td class="oblique">{{ (p-1)*10+i+1 }}</td>
+                <td class="oblique">{{client.firstName}} {{client.lastName}} </td>
+                <td class="hide d-none d-sm-block  oblique">{{client.aka}}</td>
+                <td class="oblique"> {{client.gender}}</td>
+                <td class="oblique"> {{client.age}} </td>
+                <!-- <td><a [routerLink]="['/client/'+client.key]" href="" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-circle-o-right"></i> Details</a></td> -->
+              </ng-template>
+            </tr>
+          </tbody>
+        </table>
+            
+        <ng-template #noClients>
+          <hr>
+          <h5>There are no clients in the system</h5>
+        </ng-template>
+      </div>
+      <pagination-controls (pageChange) = "p = $event"> </pagination-controls>
+    </div>
+  </div>
+
+  <!-- Adult -->
+  <div id="adult" class="collapse">
+    <div class="card card-body bg-danger text-white py-2">
+      <h2>Adult </h2>
+      <p class="lead">Adult Population will be shown here..!</p>
+      <div class="card card-body p-2">
+        <table *ngIf="clients?.length > 0;else noClients" 
+            class="table table-bordered table-dark table-sm table-hover table-striped">
+          <thead class="thead-inverse">
+            <tr>
+              <th>#</th>
+              <th (click)="sort('firstName')"  class="text-center oblique">Full Name
+                <span class="glyphicon sort-icon" *ngIf="key =='firstName'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('aka')" class="hide d-none d-sm-block oblique">A.K.A
+                <span class="glyphicon sort-icon bg-light" *ngIf="key =='aka'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('gender')" class="oblique">Gender
+                <span class="glyphicon sort-icon" *ngIf="key =='gender'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <th (click)="sort('age')" class="oblique">Age
+                <span class="glyphicon sort-icon" *ngIf="key =='age'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+              </th>
+              <!-- <th></th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let client of clients | orderBy: key : reverse | paginate: { 
+              itemsPerPage: 10,
+              currentPage: p } ; let i = index" class="text-dark" >
+              <ng-template [ngIf]= "client.age >= '18'" >
+                <td class="oblique">{{ (p-1)*10+i+1 }}</td>
+                <td class="oblique">{{client.firstName}} {{client.lastName}} </td>
+                <td class="hide d-none d-sm-block  oblique">{{client.aka}}</td>
+                <td class="oblique"> {{client.gender}}</td>
+                <td class="oblique"> {{client.age}} </td>
+                <!-- <td><a [routerLink]="['/client/'+client.key]" href="" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-circle-o-right"></i> Details</a></td> -->
+              </ng-template>
+            </tr>
+          </tbody>
+        </table>
+            
+        <ng-template #noClients>
+          <hr>
+          <h5>There are no clients in the system</h5>
+        </ng-template>
+      </div>
+      <pagination-controls (pageChange) = "p = $event"> </pagination-controls>
+    </div>
+  </div>
+
+  <!-- Dash Board -->
+  <div id="dashboard" class="collapse">
+      <div class="card card-body bg-dark text-white py-1">
+          <h2 class="text-center">Dashboard </h2>
+          <small class="text-center text-muted pb-2" >*For official use only..!</small>
+      <div class="container">
+      <div *ngIf="!isLoggedIn"   class="card card-body px-1 no-gutters">
+        <div class="row">
+        <div class="col-md-6">
+          <div class="card card-body bg-dark text-white pt-5">
+            <a class="nav-link" href="#" routerLink="/dashboard/login">
+              <i class="fa fa-sign-in d-block text-center"></i>
+            </a>
+            <h2 class="text-center text-white">Login to VDC Ashta </h2>
+            <small class="text-jestify text-center text-muted" >You should be logged in to use this!</small>
+          </div>
+          <p class="py-2 text-muted text-center">Once you login, It will be navigated to the Dashboard..</p>
+        </div>
+        <div class="col-md-6">
+          <div class="card-body bg-dark">
+              <h3 class="text-center text-white">Login</h3>
+              <form (submit)="onSubmit()">
+                <div class="form-group">
+                  <input type="email" class="form-control form-control-lg" [(ngModel)]="email" name="email" required placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control form-control-lg" [(ngModel)]="password" name="password" required placeholder="Password">
+                </div>
+                <input type="submit" value="Submit" class="btn button btn-block">
+              </form>
+            </div>
+          </div>           
+        </div>
+      </div>
+
+        <div *ngIf="isLoggedIn" id="navbarNav"  class="card card-body py-2 navbar ">
+          <div class="card card-body py-2 navbar-expand-sm navbar-warning bg-success no-gutters" >
+            <ul class="navbar-nav">                
+                <li *ngIf="isLoggedIn" class="nav-item">
+                    <a class="nav-link text-white oblique" href="#" 
+                    routerLink="/dashboard">Dashboard</a>
+                  </li>
+              
+              <li *ngIf="isLoggedIn" class="nav-item">
+                    <a class="nav-link text-white oblique" href="#">
+                      User: {{loggedInUser}}
+                    </a>
+                </li>
+
+                <li *ngIf="isLoggedIn" class="nav-item">
+                    <a class="nav-link text-white oblique" href="#" 
+                    routerLink="/dashboard/settings">Settings</a>
+                  </li>
+          
+                <li *ngIf="isLoggedIn" class="nav-item ">
+                    <a class="nav-link text-white oblique" href="#"
+                    (click) = "onLogoutClick()">Logout </a>
+                </li>
+            </ul>
+            </div>
+            <p class="text-info typing">It will be navigated to manipulate the details of a persion.</p>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </div> 
+  
+  <footer id="main-footer" class="p-1 bg-dark text-white">
+      <div class="row">
+          <div class="col-md-6 mx-auto text-center">
+          <a href="#" class="btn btn-outline-light typing"><i class="fa fa-copyright"></i>Alreddy Annela@2017</a>
+          </div>
+      </div>
+  </footer>
+
+  <script>
+    alert("Hello");
+    $('.port-item').click(function(){
+      $('.collapse').collapse('hide');
+    });
+    // var total = clients;
+    // alert(total);
+  </script>  
+
+</body>

@@ -1,0 +1,141 @@
+<div class="row pt-3 pb-1">
+  <div class="col-md-6 mx-auto">
+    <a routerLink= "/dashboard" href="#" class="btn btn-link oblique">
+      <i class="fa fa-arrow-circle-o-left"></i> Back to Dashboard
+    </a>    
+    <div class="btn-group pull-right pr-2">
+        <a  [routerLink]="['/edit-client/'+id]" class="btn btn-dark oblique" > Edit </a>
+        <button class="btn btn-danger oblique" (click) = onDeleteClick()>Delete</button>
+    </div>   
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div *ngIf="client" class="card bg-success">
+      <h4 class="card-header text-center text-white oblique">{{client.firstName}} {{client.lastName}}</h4>
+      <div class="card-body">
+        <!-- <div class="row">
+          <div class="col">
+              <h4>Clienr ID : {{id}}</h4>
+          </div>          
+        </div> -->
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row no-gutters">
+              <div class="col-sm-4">
+                <div class="input-group-addon oblique">
+                    Also Called As
+                </div>
+                </div> 
+              <div class="col-sm-8"> 
+                <div class="input-group-addon bg-white oblique">{{client.aka}}</div>
+              </div>
+            </div> 
+          </li>          
+          <li class="list-group-item">
+            <div class="row no-gutters">
+              <div class="col-sm-4">
+                <div class="input-group-addon oblique">
+                    Age
+                </div>
+              </div> 
+              <div class="col-sm-8"> 
+                <div class="input-group-addon bg-white oblique">{{client.age}}</div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row no-gutters">
+              <div class="col-sm-4">
+                <div class="input-group-addon oblique">
+                    Date of Birth
+                </div>
+              </div> 
+              <div class="col-sm-8"> 
+                <div class="input-group-addon bg-white oblique">{{client.dateOfBirth}}</div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row no-gutters">
+              <div class="col-sm-4">
+                <div class="input-group-addon oblique">
+                    Adhar Card
+                </div>
+              </div> 
+              <div class="col-sm-8"> 
+                <div class="input-group-addon bg-white oblique">{{client.adharCard}}</div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row no-gutters">
+              <div class="col-sm-4">
+                <div class="input-group-addon oblique">
+                    Gender
+                </div>
+              </div> 
+              <div class="col-sm-8"> 
+                <div class="input-group-addon bg-white oblique">{{client.gender}}</div>
+              </div>
+            </div>
+          </li>    
+          <li class="list-group-item">
+            <div class="row no-gutters">
+              <div class="col-sm-4">
+                <div class="input-group-addon oblique">
+                    Marital Status
+                </div>
+              </div> 
+              <div class="col-sm-8"> 
+                <div class="input-group-addon bg-white oblique">{{client.maritalStatus}}</div>
+              </div>
+            </div>
+          </li>    
+          <li class="list-group-item">
+            <div class="row no-gutters">
+              <div class="col-sm-4">
+                <div class="input-group-addon oblique">
+                    Designation
+                </div>
+              </div>
+              <div class="col-sm-8"> 
+                <div class="input-group-addon bg-white oblique">{{client.designation}}</div>
+              </div>
+            </div>
+          </li> 
+          <li class="list-group-item">
+            <div class="row no-gutters">
+              <div class="col-sm-4">
+                <div class="input-group-addon oblique">
+                    Phone
+                </div>
+              </div> 
+              <div class="col-sm-8"> 
+                <div class="input-group-addon bg-white oblique">{{client.phone}}</div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row no-gutters">
+              <div class="col-sm-4">
+                <div class="input-group-addon oblique">
+                    Email
+                </div>
+              </div> 
+              <div class="col-sm-8"> 
+                <div class="input-group-addon bg-white oblique">{{client.email}}</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

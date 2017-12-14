@@ -1,0 +1,68 @@
+<!-- <div class="container"> -->
+    <div class="col-sm-6 col-md-4 ml-auto pb-2">
+      <!-- <input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="Search"> -->
+      <input type="text" [(ngModel)]="userFilter.firstName" placeholder="Search with Firstname">
+    </div>
+
+  <!-- <div class="col-md-6 ml-auto pb-2">
+    <div class="row no-gutters">
+      <div class="col-2 input-group-addon">
+        <i class="fa fa-search  mx-auto"></i>
+      </div>
+      <div class="col-10">
+        <input type="text" [(ngModel)]="userFilter.firstName" placeholder="Search with Firstname">
+      </div>
+    </div>
+  </div> -->
+  <div class="card card-body p-1">
+    <table *ngIf="clients?.length > 0;else noClients" class="table table-bordered table-sm table-hover">
+      <!-- class="table table-bordered table-dark table-sm table-hover table-striped" -->
+      <thead class="thead-inverse">
+        <tr>
+          <th>#</th>
+          <th (click)="sort('firstName')"  class="text-center oblique">Full Name
+            <span class="glyphicon sort-icon" *ngIf="key =='firstName'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          <th (click)="sort('aka')" class="hide d-none d-sm-block oblique">A.K.A
+            <span class="glyphicon sort-icon bg-light" *ngIf="key =='aka'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          <th (click)="sort('gender')" class="oblique">Gender
+            <span class="glyphicon sort-icon" *ngIf="key =='gender'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          <th (click)="sort('age')" class="oblique">Age
+            <span class="glyphicon sort-icon" *ngIf="key =='age'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients | orderBy: key : reverse 
+        | filterBy: userFilter
+                    | paginate: { itemsPerPage: 20, currentPage: p } 
+                    ; let i= index" class="text-dark">
+                    
+          <!-- <ng-template [ngIf]="client.gender == 'Female'"> -->
+            <td class="oblique">{{ (p-1)*20+i+1 }}</td>
+            <td class="oblique">{{client.firstName}} {{client.lastName}} </td>
+            <td class="hide d-none d-sm-block oblique">{{client.aka}}</td>
+            <td class="oblique"> {{client.gender}}</td>
+            <td class="oblique"> {{client.age}} </td>
+            <td class="oblique"> 
+              <a 
+                [routerLink]="['/client/'+client.key]" href="" class="btn btn-success btn-sm"><i class="fa fa-arrow-circle-o-right"></i> Details
+              </a>
+            </td>            
+              <!-- </ng-template> -->
+          </tr>
+      </tbody>
+    </table>
+    
+    <ng-template #noClients>
+      <hr>
+      <h5 class="oblique">There are no clients in the system</h5>
+    </ng-template>
+    <pagination-controls class="bg-secondary" (pageChange) = "p = $event"> </pagination-controls>
+  </div>
+<!-- </div> -->
+
+

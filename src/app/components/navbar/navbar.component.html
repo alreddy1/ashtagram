@@ -1,0 +1,116 @@
+<head>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+    <div class="container">
+      <a href="#" class="navbar-brand text-warning"> <i class="fa fa-instagram text-warning"></i> Ashta-Gram</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#" routerLink="/" >Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" routerLink="/development" class="nav-link">Development</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" routerLink="/population-details" class="nav-link">Population</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" routerLink="/events" class="nav-link">Events</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" routerLink="/details" class="nav-link">Details</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" routerLink="/about" class="nav-link">About Us</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav bg-danger ml-auto">
+          <li class="nav-item dropdown mr-3">
+            <a *ngIf="isLoggedIn" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-user"></i> Welcome Linga
+            </a>
+            <div class="dropdown-menu bg-info">
+              <a routerLink="/dashboard" href="" class="dropdown-item">
+                <i class="fa fa-th"></i> Dashboard
+              </a>
+              <a *ngIf="isLoggedIn && showRegister" routerLink="/dashboard/register" href="#" class="dropdown-item">
+                <i class="fa fa-user-circle"></i> Register
+              </a>
+              <a routerLink="/dashboard/settings" href="#" class="dropdown-item">
+                <i class="fa fa-gear"></i> Settings
+              </a>
+              <div class="dropdown-divider"></div>
+              <a *ngIf="isLoggedIn" href="#" class="dropdown-item" (click) = "onLogoutClick()">
+                <i class="fa fa-user-times"></i> Logout
+              </a>
+            </div>
+          </li>
+          <!-- <li *ngIf="!isLoggedIn && showRegister" class="nav-item ">
+              <a class="nav-link" href="#"
+              routerLink="/dashboard/login">Login </a>
+          </li>
+          <li *ngIf="!isLoggedIn && showRegister" class="nav-item ">
+              <a class="nav-link" href="#"
+              routerLink="/dashboard/register">Register </a>
+          </li>
+    
+          <li *ngIf="isLoggedIn" class="nav-item">
+              <a class="nav-link" href="#">
+                User: {{loggedInUser}}
+              </a>
+          </li>
+    
+          <li *ngIf="isLoggedIn" class="nav-item">
+              <a class="nav-link" href="#" routerLink="/dashboard/settings">Settings</a>
+            </li>
+    
+          <li *ngIf="isLoggedIn" class="nav-item ">
+              <a class="nav-link" href="#"
+              (click) = "onLogoutClick()">Logout </a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- This section will be used if you want to switch the navbar use set up some variable and use *ngIf
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+      <div class="container">
+        <a href="#" class="navbar-brand">VDC Ashta</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#" routerLink="/" >Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" routerLink="/about" class="nav-link">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" routerLink="/dashboard" class="nav-link">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav> -->
+
+</body>
+
+        
+        
+     
+  

@@ -1,0 +1,36 @@
+.carousel-item {
+    height: 450px;
+ }
+
+ .carousel-inner{
+    width:100%;
+    max-height: 300px !important;
+  }
+  
+ .carousel-image-1 {
+    background: url("../../../assets/img/god/ganesh-7.jpg");
+    background-size: cover; 
+    max-width: 437px;
+    max-height: 328px;
+    
+    /* background-size: 100px 10px cover; */
+}
+
+.carousel-image-2 {
+    background: url("../../../assets/img/god/maa-durga.jpg");
+    background-size: cover;
+    max-width: 437px;
+    max-height: 328px;
+    
+}
+
+.carousel-image-3 {
+    background: url("../../../assets/img/god/saibaba.jpg");
+    background-size: cover;
+
+    max-width: 437px;
+    max-height: 328px;
+    
+}
+
+    
